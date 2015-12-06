@@ -4,6 +4,8 @@ div.ucImage {
 
 div.center {
     margin: auto;
+    position: absolute;
+    top: 50%;
     text-align: center;
     width: 100%;
 }
