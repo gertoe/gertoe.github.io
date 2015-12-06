@@ -9,6 +9,7 @@ div.center {
 }
 
 h1.center {
+  top: 50%;
   text-align: center;
 }
 
