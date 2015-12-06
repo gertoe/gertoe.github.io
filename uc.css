@@ -2,20 +2,6 @@ div.ucImage {
   content:url(uc.gif)
 }
 
-div.center {
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    text-align: center;
-    width: 100%;
-}
-
-h1.center {
-  position: absolute;
-  top: 50%;
-  text-align: center;
-}
-
 div.nonSelectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
