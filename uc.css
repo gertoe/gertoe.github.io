@@ -1,6 +1,12 @@
 div.ucImage {
   content:url(uc.gif)
 }
+
+div.center {
+    margin: auto;
+    width: 100%;
+}
+
 div.nonSelectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
