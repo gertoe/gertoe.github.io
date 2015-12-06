@@ -2,6 +2,9 @@ div.ucImage {
   content:url(uc.gif)
 }
 
+h1.center {
+  text-align: center;
+}
 div.center {
   position: absolute;
   top: 50%;
