@@ -7,6 +7,10 @@ div.center {
     width: 100%;
 }
 
+h1.center {
+  text-align: center;
+}
+
 div.nonSelectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
