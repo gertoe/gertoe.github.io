@@ -1,5 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 div.ucImage {
-  content:url(uc.gif)
+  content:url(/uc/uc.gif);
+  width: 100%;
 }
 
 div.center {
@@ -22,5 +28,5 @@ div.nonSelectable {
 .foot {
   position: absolute;
   bottom: 0;
-  width: 99%;
 }
+
