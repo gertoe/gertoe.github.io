@@ -19,7 +19,7 @@
      baseProfile="full"
      width="100%"
      height="100%"
-     viewBox="0 0 200 200">
+     viewBox="-10 -10 220 220">
 
   <defs>
 
@@ -324,7 +324,7 @@
 
     <!-- visible dial circle -->
     <clipPath id="dialCircle">
-      <circle cx="100" cy="100" r="100"/>
+      <circle cx="100" cy="100" r="120"/>
     </clipPath>
 
   </defs>
@@ -334,7 +334,8 @@
 
     <!-- background -->
     <g id="background" style="fill:none">
-      <circle cx="100" cy="100" r="100" style="stroke:none"/>
+      <!-- <circle cx="100" cy="100" r="100" style="stroke:none"/> -->
+      <circle cx="100" cy="100" r="100" stroke="white" stroke-width="10"/>
     </g>
 
     <!-- dial -->
