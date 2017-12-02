@@ -92,9 +92,7 @@
           minuteAngle += 0.1 * seconds;
         }
         else if (this.minuteHandBehavior === 'swinging' || this.minuteHandBehavior === undefined) {
-          if (seconds === 59) {
-          minuteAngle += 3 * (1 + Math.cos(Math.PI + Math.PI * (0.001 * millis)));
-          }
+          minuteAngle += (seconds === 59) ? 3 * (1 + Math.cos(Math.PI + Math.PI * (0.001 * millis))) : 0;
         }
         this.rotateElement('minuteHand', minuteAngle);
 
