@@ -24,7 +24,7 @@
   <defs>
 
     <script type="text/javascript">
-    <![CDATA[
+    // <![CDATA[
 
       // the clock object
       var clock  = new Object();
@@ -173,7 +173,7 @@
         document.getElementById(id).setAttribute('transform', 'rotate(' + angle + ', 100, 100)');
       }
 
-    ]]>
+    // ]]>
     </script>
 
     <!-- hour stroke (swiss) -->
@@ -333,9 +333,8 @@
   <g id="clock" clip-path="url(#dialCircle)" visibility="hidden">
 
     <!-- background -->
-    <g id="background" style="fill:none">
-      <!-- <circle cx="100" cy="100" r="100" style="stroke:none"/> -->
-      <circle cx="100" cy="100" r="100" stroke="white" stroke-width="10"/>
+    <g id="background" style="fill:none; stroke:none;">
+      <circle cx="100" cy="100" r="100" stroke-width="10"/>
     </g>
 
     <!-- dial -->

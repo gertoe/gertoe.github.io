@@ -2,12 +2,33 @@
   <head>
     <meta charset="UTF-8">
     <title>SVG-Bahnhofsuhr</title>
+    <style type="text/css">
+.absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.center {
+  margin: auto;
+  display: block;
+}
+
+.clock {
+  object-fit: contain;
+  object-position: 50% 50%;
+  height: 100%;
+  width: 100%;
+}
+    </style>
   </head>
 
   <body style="background-color: black;" >
-    <div style="position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%);">
-
-      <object data="station-clock.svg" type="image/svg+xml" width="500vh" height="500vh">
+    <div id="clockbox" class="">
+      <object class="clock center" data="station-clock.svg" type="image/svg+xml" style="">
         <param name="dial"               value="din 41091.1"/>
         <param name="hourHand"           value="din 41092.3"/>
         <param name="minuteHand"         value="din 41092.3"/>
@@ -16,7 +37,7 @@
         <param name="secondHandBehavior" value="sweeping"/>
         <param name="secondHandStopToGo" value="yes"/>
         <param name="secondHandStopTime" value="1.5"/>
-        <param name="backgroundColor"    value="rgba(255,255,255,255)"/>
+        <param name="backgroundColor"    value="rgb(255,255,255,255)"/>
         <param name="dialColor"          value="rgb(40,40,40)"/>
         <param name="hourHandColor"      value="rgb(20,20,20)"/>
         <param name="minuteHandColor"    value="rgb(20,20,20)"/>
@@ -25,7 +46,6 @@
         <param name="axisCoverRadius"    value="0"/>
         <param name="updateInterval"     value="50"/>
       </object>
-
     </div>
   </body>
 
