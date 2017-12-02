@@ -6,13 +6,13 @@
  *
  * Date: 2016-02-16
  * Version: 1.0.1
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,7 @@
  * Known Issues:
  *
  *   Shadows for some second hands is not on one layer
- * 
+ *
  * Thanks to Paul Schröfl for the Wiener Würfeluhr
  */
 
@@ -80,23 +80,23 @@ StationClock.OverhastySecondHand       = 3;
 
 
 function StationClock(clockId) {
-  this.clockId = clockId; 
+  this.clockId = clockId;
   this.radius  = 0;
 
   // hour offset
   this.hourOffset = 0;
-  
+
   // clock body
   this.body              = StationClock.RoundBody;
   this.bodyShadowColor   = "rgba(0,0,0,0.5)";
   this.bodyShadowOffsetX = 0.03;
   this.bodyShadowOffsetY = 0.03;
   this.bodyShadowBlur    = 0.06;
-  
+
   // body dial
   this.dial              = StationClock.GermanStrokeDial;
   this.dialColor         = 'rgb(60,60,60)';
-  
+
   // clock hands
   this.hourHand          = StationClock.PointedHourHand;
   this.minuteHand        = StationClock.PointedMinuteHand;
@@ -105,23 +105,23 @@ function StationClock(clockId) {
   this.handShadowOffsetX = 0.03;
   this.handShadowOffsetY = 0.03;
   this.handShadowBlur    = 0.04;
-	
+
 	// clock colors
 	this.hourHandColor     = 'rgb(0,0,0)';
 	this.minuteHandColor   = 'rgb(0,0,0)';
 	this.secondHandColor   = 'rgb(200,0,0)';
-  
+
   // clock boss
   this.boss              = StationClock.NoBoss;
   this.bossShadowColor   = "rgba(0,0,0,0.2)";
   this.bossShadowOffsetX = 0.02;
   this.bossShadowOffsetY = 0.02;
   this.bossShadowBlur    = 0.03;
-  
+
   // hand behavoir
   this.minuteHandBehavoir = StationClock.CreepingMinuteHand;
   this.secondHandBehavoir = StationClock.OverhastySecondHand;
-  
+
   // hand animation
   this.minuteHandAnimationStep = 0;
   this.secondHandAnimationStep = 0;
@@ -135,12 +135,12 @@ StationClock.prototype.draw = function() {
     var context = clock.getContext('2d');
     if (context) {
       this.radius = 0.75 * (Math.min(clock.width, clock.height) / 2);
-      
+
       // clear canvas and set new origin
       context.clearRect(0, 0, clock.width, clock.height);
       context.save();
       context.translate(clock.width / 2, clock.height / 2);
-      
+
       // draw body
       if (this.body != StationClock.NoStrokeBody) {
         context.save();
@@ -199,7 +199,7 @@ StationClock.prototype.draw = function() {
             }
           context.restore();
       }
-      
+
       // draw dial
       for (var i = 0; i < 60; i++) {
         context.save();
@@ -272,7 +272,7 @@ StationClock.prototype.draw = function() {
           this.fillSymmetricPolygon(context, this.hourHandColor, [[-0.02,-0.72],[-0.08,-0.56],[-0.15,-0.45],[-0.06,-0.30],[-0.03,0],[-0.1,0.2],[-0.05,0.23],[-0.03,0.2]]);
       }
       context.restore();
-      
+
       // draw minute hand
       context.save();
       switch (this.minuteHandBehavoir) {
@@ -306,7 +306,7 @@ StationClock.prototype.draw = function() {
           this.fillSymmetricPolygon(context, this.minuteHandColor, [[-0.02,-0.98],[-0.09,-0.7],[-0.03,0],[-0.05,0.2],[-0.01,0.4]]);
       }
       context.restore();
-      
+
       // draw second hand
       context.save();
       switch (this.secondHandBehavoir) {
@@ -353,7 +353,7 @@ StationClock.prototype.draw = function() {
           break;
       }
       context.restore();
-      
+
       // draw clock boss
       if (this.boss != StationClock.NoBoss) {
         context.save();
@@ -371,7 +371,7 @@ StationClock.prototype.draw = function() {
         }
         context.restore();
       }
-      
+
       context.restore();
     }
   }
