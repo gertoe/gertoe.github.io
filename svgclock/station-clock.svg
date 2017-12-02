@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- 
+<!--
      station-clock.svg
 
      Copyright (c) 2012 Rüdiger Appel
      Licensed under the creative common license.
-     
+
      Date:    2012-03-23
      Version: 1.0
      Email:   ludi(at)me(dot)com
@@ -32,11 +32,11 @@
 
       // initialize clock
       clock.initialize = function() {
-        if (document.getElementById('background') && 
+        if (document.getElementById('background') &&
             document.getElementById('dial') &&
             document.getElementById('hourHand') &&
             document.getElementById('minuteHand') &&
-            document.getElementById('secondHand') && 
+            document.getElementById('secondHand') &&
             document.getElementById('axisCover')) {
 
           // get html parameter and set clock attributes
@@ -46,7 +46,7 @@
               this[params[i].name] = params[i].value.toLowerCase();
             }
           }
- 
+
           // set clock colors
           this.setColorForElement('background');
           this.setColorForElement('dial');
@@ -87,10 +87,19 @@
         this.rotateElement('hourHand', 30 * hours + 0.5 * minutes);
 
         // rotate minute hand
-        this.rotateElement('minuteHand', 6 * minutes + (this.minuteHandBehavior === 'sweeping' ? 0.1 * seconds : 0));
+        var minuteAngle = 6 * minutes;
+        if (this.minuteHandBehavior === 'sweeping') {
+          minuteAngle += 0.1 * seconds;
+        }
+        else if (this.minuteHandBehavior === 'swinging' || this.minuteHandBehavior === undefined) {
+          if (seconds === 59) {
+          minuteAngle += 3 * (1 + Math.cos(Math.PI + Math.PI * (0.001 * millis)));
+          }
+        }
+        this.rotateElement('minuteHand', minuteAngle);
 
         // handle "stop to go" second hand
-        if (this.secondHandStopToGo === 'yes' || this.secondHandStopToGo === 'true') {
+        if (this.secondHandStopToGo === 'yes' || this.secondHandStopToGo === 'true' || this.secondHandStopToGo === undefined) {
           var wait = isNaN(this.secondHandStopTime) ? 1.5 : this.secondHandStopTime;
           var fact = 60 / (60 - Math.min(30, Math.max(0, wait)));
           var time = Math.min(60000, fact * (1000 * seconds + millis));
@@ -100,7 +109,7 @@
 
         // rotate second hand
         var secondAngle = 6 * seconds;
-        if (this.secondHandBehavior === 'sweeping') {
+        if (this.secondHandBehavior === 'sweeping' || this.secondHandBehavior === undefined) {
           secondAngle += 0.006 * millis;
         } else if (this.secondHandBehavior === 'swinging') {
           secondAngle += 3 * (1 + Math.cos(Math.PI + Math.PI * (0.001 * millis)));
@@ -119,36 +128,36 @@
 
       // set clock dial
       clock.setClockDial = function(value) {
-        this.showElement('dialSwiss',      value === 'swiss' || value === undefined);
+        this.showElement('dialSwiss',      value === 'swiss');
         this.showElement('dialAustria',    value === 'austria');
         this.showElement('dialPoints',     value === 'points');
-        this.showElement('dialDIN41091.1', value === 'din 41091.1');
+        this.showElement('dialDIN41091.1', value === 'din 41091.1' || value === undefined);
         this.showElement('dialDIN41091.3', value === 'din 41091.3');
         this.showElement('dialDIN41091.4', value === 'din 41091.4');
       }
 
       // set hour hand
       clock.setHourHand = function(value) {
-        this.showElement('hourHandSwiss',      value === 'swiss' || value === undefined);
+        this.showElement('hourHandSwiss',      value === 'swiss');
         this.showElement('hourHandGerman',     value === 'german');
         this.showElement('hourHandSiemens',    value === 'siemens');
-        this.showElement('hourHandDIN41092.3', value === 'din 41092.3');
+        this.showElement('hourHandDIN41092.3', value === 'din 41092.3'|| value === undefined);
       }
 
       // set minute hand
       clock.setMinuteHand = function(value) {
-        this.showElement('minuteHandSwiss',      value === 'swiss' || value === undefined);
+        this.showElement('minuteHandSwiss',      value === 'swiss');
         this.showElement('minuteHandGerman',     value === 'german');
         this.showElement('minuteHandSiemens',    value === 'siemens');
-        this.showElement('minuteHandDIN41092.3', value === 'din 41092.3');
+        this.showElement('minuteHandDIN41092.3', value === 'din 41092.3' || value === undefined);
       }
 
       // set second hand
       clock.setSecondHand = function(value) {
-        this.showElement('secondHandSwiss',      value === 'swiss' || value === undefined);
+        this.showElement('secondHandSwiss',      value === 'swiss');
         this.showElement('secondHandGerman',     value === 'german');
         this.showElement('secondHandDIN41071.1', value === 'din 41071.1');
-        this.showElement('secondHandDIN41071.2', value === 'din 41071.2');
+        this.showElement('secondHandDIN41071.2', value === 'din 41071.2' || value === undefined);
       }
 
       // set axis cover
@@ -390,10 +399,10 @@
         <polygon points="95,33 105,33 106,125 94,125" style="stroke:none"/>
       </g>
       <g id="hourHandGerman" visibility="hidden">
-        <rect x="95" y="40" width="10" height="65" style="stroke:none"/>      
+        <rect x="95" y="40" width="10" height="65" style="stroke:none"/>
       </g>
       <g id="hourHandSiemens" visibility="hidden">
-        <rect x="97.3" y="65" width="5.4" height="35" style="stroke:none"/>      
+        <rect x="97.3" y="65" width="5.4" height="35" style="stroke:none"/>
         <circle cx="97.3" cy="58.5" r="9" style="stroke:none"/>
         <circle cx="102.7" cy="58.5" r="9" style="stroke:none"/>
         <path d="M 88.3,58.5 Q 88.3,52 100,37.5 Q 111.7,52 111.7,58.5 Z" style="stroke:none"/>
@@ -411,7 +420,7 @@
         <polygon points="96,5 104,5 105,125 95,125" style="stroke:none"/>
       </g>
       <g id="minuteHandGerman" visibility="hidden">
-        <rect x="95" y="6" width="8" height="99" style="stroke:none"/>      
+        <rect x="95" y="6" width="8" height="99" style="stroke:none"/>
       </g>
       <g id="minuteHandSiemens" visibility="hidden">
         <polygon points="95.3,49 99.5,2 100.5,2 104.7,49 102.7,100 97.3,100" style="stroke:none"/>
@@ -452,4 +461,4 @@
   </g>
 
 </svg>
- 
+
