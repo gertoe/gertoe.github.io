@@ -46,6 +46,10 @@
               this[params[i].name] = params[i].value.toLowerCase();
             }
           }
+          else {
+            var params = console.log(document.defaultView.window);
+          }
+
 
           // set clock colors
           this.setColorForElement('background');
